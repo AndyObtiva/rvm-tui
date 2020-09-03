@@ -1,1 +1,9 @@
+#!/bin/sh
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+GEM_ROOT="$( dirname $DIR )"
+  
+export ruby_path="$(which ruby)"
+[ -z $ruby_path ] && export ruby_path="$(which jruby)"
+  
+$ruby_path $GEM_ROOT/lib/rvm-tui.rb
