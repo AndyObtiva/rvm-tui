@@ -1,0 +1,53 @@
+#!/usr/bin/env ruby
+
+puts "rvm-tui-setup version #{File.read(File.expand_path('../../VERSION', __FILE__))}"
+
+ruby = `which ruby`
+ruby = `which jruby` if ruby.to_s.strip.empty?
+ruby = ruby.strip
+rvm = `rvm current`.strip
+command = "rvm #{rvm} do #{ruby} #{File.expand_path('../../lib/rvm-tui.rb', __FILE__)}"
+
+rvm_tui_script = <<-SHELL_SCRIPT
+function rvm-tui()
+{
+  # Load RVM into a shell session *as a function*
+  if [[ -s "$HOME/.rvm/scripts/rvm" ]] ; then
+    # First try to load from a user install
+    source "$HOME/.rvm/scripts/rvm"
+  elif [[ -s "/usr/local/rvm/scripts/rvm" ]] ; then
+    # Then try to load from a root install
+    source "/usr/local/rvm/scripts/rvm"
+  else
+    printf "ERROR: An RVM installation was not found.\\n"
+  fi
+  
+  #{command}
+  source $HOME/.rvm-command
+  rm $HOME/.rvm-command
+}
+SHELL_SCRIPT
+
+require 'fileutils'
+home_dir = `echo ~`.strip
+FileUtils.mkdir_p("#{home_dir}/bin")
+rvm_tui_script_file = "#{home_dir}/.rvm_tui_source"
+rvm_tui_script_file_bash = "$HOME/.rvm_tui_source"
+File.write(rvm_tui_script_file, rvm_tui_script)
+bash_profile_file_name = '.bash_profile'
+bash_profile_file = "#{home_dir}/#{bash_profile_file_name}"
+if !File.exist?(bash_profile_file)
+  bash_profile_file_name = '.bashrc' 
+  bash_profile_file = "#{home_dir}/#{bash_profile_file_name}"
+end
+FileUtils.touch(bash_profile_file)
+bash_profile = File.read(bash_profile_file)
+rvm_tui_source_statement = "source \"#{rvm_tui_script_file_bash}\""
+unless bash_profile.split("\n").detect {|line| line.include?(rvm_tui_source_statement) }
+  File.write(bash_profile_file, "#{bash_profile}\n#{rvm_tui_source_statement}")
+end
+puts <<~OUTPUT
+The `rvm-tui` function has been sourced from ~/#{bash_profile_file_name}
+To use `rvm-tui`, make sure to first run:
+source ~/#{bash_profile_file_name}
+OUTPUT
