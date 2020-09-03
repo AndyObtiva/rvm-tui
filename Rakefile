@@ -20,7 +20,7 @@ Juwelier::Tasks.new do |gem|
   gem.description = %Q{Ruby enVironment Manager - Text-based User Interface}
   gem.email = "andy.am@gmail.com"
   gem.authors = ["andy_maleh"]
-
+  gem.executables = ['rvm-tui']
   # dependencies defined in Gemfile
 end
 Juwelier::RubygemsDotOrgTasks.new

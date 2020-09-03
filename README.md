@@ -1,9 +1,16 @@
-rvm-tui===================
+# Ruby enVironment Manager - Text-based User Interface
 
-Description goes here.
+RVM is the original Ruby enVironment Manager that is used to:
+- Effortlessly install multiple versions of Ruby, including JRuby
+- Isolate projects from each other with gemsets to:
+  - Enable higher productivity by being able to work on projects completely worry-free and without any concerns about side-effects on other projects
+  - Ability to manage a project's gems (including mass deletion) without worrying about affecting other projects
+  - Prevent odd bugs that happen when sharing gems with other projects due to making changes in them
+  - Simplify gem-related troubleshooting without a domino effect on other projects
+  
+Given how practical and often-used RVM is, I am providing a text-based user interface for it.
 
-Contributing to rvm-tui
-------------------------------------------
+## Contributing to rvm-tui
 
 -   Check out the latest master to make sure the feature hasn't been
     implemented or the bug hasn't been fixed yet.
@@ -19,8 +26,8 @@ Contributing to rvm-tui
     is fine, but please isolate to its own commit so I can cherry-pick
     around it.
 
-Copyright
----------
+## License
 
-Copyright (c) 2020 andy_maleh. See
-LICENSE.txt for further details.
+[Apache License, Version 2.0](https://www.apache.org/licenses/LICENSE-2.0)
+
+Copyright (c) 2020 Andy Maleh. See [LICENSE.txt](LICENSE.txt) for further details.
