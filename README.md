@@ -1,4 +1,5 @@
 # Ruby enVironment Manager - Text-based User Interface
+[![Gem Version](https://badge.fury.io/rb/rvm-tui.svg)](https://badge.fury.io/rb/rvm-tui)
 
 [RVM](https://rvm.io) is the original Ruby enVironment Manager that is used to:
 - Effortlessly install multiple versions of [Ruby](https://www.ruby-lang.org/en/), including [JRuby](https://www.jruby.org/)
@@ -57,6 +58,14 @@ rvm-tui
     you want to have your own version, or is otherwise necessary, that
     is fine, but please isolate to its own commit so I can cherry-pick
     around it.
+
+## TODO
+
+[TODO.md](TODO.md)
+
+## Change Log
+
+[CHANGELOG.md](CHANGELOG.md)
 
 ## License
 

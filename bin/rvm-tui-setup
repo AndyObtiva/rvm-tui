@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
-puts "rvm-tui-setup version #{File.read(File.expand_path('../../VERSION', __FILE__))}"
+version = File.read(File.expand_path('../../VERSION', __FILE__))
+puts "== rvm-tui-setup version #{version.strip} =="
 
 ruby = `which ruby`
 ruby = `which jruby` if ruby.to_s.strip.empty?
@@ -8,24 +9,30 @@ ruby = ruby.strip
 rvm = `rvm current`.strip
 command = "rvm #{rvm} do #{ruby} #{File.expand_path('../../lib/rvm-tui.rb', __FILE__)}"
 
-rvm_tui_script = <<-SHELL_SCRIPT
-function rvm-tui()
-{
-  # Load RVM into a shell session *as a function*
-  if [[ -s "$HOME/.rvm/scripts/rvm" ]] ; then
-    # First try to load from a user install
-    source "$HOME/.rvm/scripts/rvm"
-  elif [[ -s "/usr/local/rvm/scripts/rvm" ]] ; then
-    # Then try to load from a root install
-    source "/usr/local/rvm/scripts/rvm"
-  else
-    printf "ERROR: An RVM installation was not found.\\n"
-  fi
-  
-  #{command}
-  source $HOME/.rvm-command
-  rm $HOME/.rvm-command
-}
+rvm_tui_script = <<~SHELL_SCRIPT
+  function rvm-tui()
+  {
+    # Load RVM into a shell session *as a function*
+    if [[ -s "$HOME/.rvm/scripts/rvm" ]] ; then
+      # First try to load from a user install
+      source "$HOME/.rvm/scripts/rvm"
+    elif [[ -s "/usr/local/rvm/scripts/rvm" ]] ; then
+      # Then try to load from a root install
+      source "/usr/local/rvm/scripts/rvm"
+    else
+      printf "ERROR: An RVM installation was not found.\\n"
+    fi
+    
+    IFS='@'
+    read -a rvm_current <<< "$(rvm current)"
+    current_ruby="${rvm_current[0]}"
+    current_gemset="${rvm_current[1]}"
+    #{command} $current_ruby $current_gemset
+    if [ -f "$HOME/.rvm_command" ]; then
+      source $HOME/.rvm_command
+      rm $HOME/.rvm_command
+    fi  
+  }
 SHELL_SCRIPT
 
 require 'fileutils'
@@ -47,7 +54,7 @@ unless bash_profile.split("\n").detect {|line| line.include?(rvm_tui_source_stat
   File.write(bash_profile_file, "#{bash_profile}\n#{rvm_tui_source_statement}")
 end
 puts <<~OUTPUT
-The `rvm-tui` function has been sourced from ~/#{bash_profile_file_name}
-To use `rvm-tui`, make sure to first run:
-source ~/#{bash_profile_file_name}
+  ~/#{bash_profile_file_name} has been modified to source the `rvm-tui` function from ~/.rvm_tui_source
+  To use `rvm-tui`, make sure to first run:
+  source ~/.rvm_tui_source 
 OUTPUT
