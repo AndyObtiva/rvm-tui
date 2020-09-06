@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.0.3
+
+- Corrected declaration of license as Apache-2.0
+
 ## 0.0.2
 
 - Safe abort support (use CTRL+C without seeing error messages)

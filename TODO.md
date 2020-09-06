@@ -1,5 +1,6 @@
 # TODO
 
+- Support listing gems under a gemset
 - Support removing a ruby
 - Support uninstalling a ruby
 - Support aliasing a ruby
