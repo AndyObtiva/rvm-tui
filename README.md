@@ -9,7 +9,9 @@
   - Prevent odd bugs that happen when sharing gems with other projects due to making changes in them
   - Simplify gem-related troubleshooting without a domino effect on other projects
   
-Given how practical and often-used [RVM](https://rvm.io) is, I am providing a text-based user interface for it.
+Given how practical and often-used [RVM](https://rvm.io) is, I am providing a text-based user interface for it that facilitates these tasks:
+- Testing the same project with multiple Rubies (e.g. ensuring it runs on both Ruby and JRuby)
+- Testing the same project with different gem version combinations in different gemsets (e.g. checking if it works with both facets 3 + dependencies and facets 2 + dependencies)
 
 ![RVM TUI DEMO](rvm-tui-demo.gif)
 
