@@ -21,20 +21,21 @@ Other TUI gems you may be interested in:
 ## Pre-requisites
 
 - [RVM](https://rvm.io)
-- Any version of Ruby installed via [RVM](https://rvm.io)
+- Any version of [Ruby](https://www.ruby-lang.org/en/) installed via [RVM](https://rvm.io) (preferably [MRI Ruby](https://www.ruby-lang.org/en/) for a fast startup time)
+- [Bash](https://www.gnu.org/software/bash/) or [Zsh](http://zsh.sourceforge.net/) (Z Shell) (including Sed)
 
 ## Setup Instructions
 
-The gem can be installed unto any [Ruby](https://rvm.io/rubies/installing)/[Gemset](https://rvm.io/gemsets/basics) in [RVM](https://rvm.io) and it will be used from there everywhere. 
+The gem can be installed unto any [Ruby](https://rvm.io/rubies/installing)/[Gemset](https://rvm.io/gemsets/basics) in [RVM](https://rvm.io) and it will be used from there everywhere.
 
-Since it is independent of any particular [Ruby](https://www.ruby-lang.org/en/) project, it is recommended you install unto the default [gemset](https://rvm.io/gemsets/basics).
+Since it is independent of any particular [Ruby](https://www.ruby-lang.org/en/) project, it is recommended you install unto the default [gemset](https://rvm.io/gemsets/basics) (or optionally into its own gemset if you prefer).
 
 Afterwards, run the `rvm-tui-setup` command from the same [RVM](https://rvm.io) [Ruby](https://rvm.io/rubies/installing)/[Gemset](https://rvm.io/gemsets/basics) you installed the gem at to setup the `rvm-tui` function source in `~/.bash_profile` or `~/.bashrc` (whichever is available)
 
-These are the commands you need to run:
+These are the commands you need to run in order to select a Ruby and gemset, install gem, and finally setup gem commands globablly in the shell environment:
 
 ```
-rvm use @default
+rvm use @default # or a different ruby version/gemset like `rvm use ruby-2.7.2@rvm-tui --create`
 gem install rvm-tui
 rvm-tui-setup
 ```
@@ -44,8 +45,17 @@ rvm-tui-setup
 Simply run this command:
 
 ```
+rvmui
+```
+
+Or one of the aliases:
+
+```
+rvmtui
+rvm-ui
 rvm-tui
 ```
+
 
 ## Contributing to rvm-tui
 
@@ -76,7 +86,7 @@ rvm-tui
 
 [Apache License, Version 2.0](LICENSE.txt)
 
-Copyright (c) 2020 Andy Maleh
+Copyright (c) 2020-2021 Andy Maleh
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

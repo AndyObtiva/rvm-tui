@@ -1,11 +1,11 @@
-# Copyright (c) 2020 Andy Maleh
-# 
+# Copyright (c) 2020-2021 Andy Maleh
+#
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
-# 
+#
 #     http://www.apache.org/licenses/LICENSE-2.0
-# 
+#
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -35,7 +35,7 @@ RVM_COMMAND_PREFIX = <<~SHELL_SCRIPT
     source "/usr/local/rvm/scripts/rvm"
   else
     printf "ERROR: An RVM installation was not found.\\n"
-  fi  
+  fi
   rvm use #{CURRENT_RVM_RUBY}@#{CURRENT_RVM_GEMSET}
 SHELL_SCRIPT
 
@@ -44,12 +44,12 @@ def rvm_command(command)
 end
 
 begin
-  prompt = TTY::Prompt.new  
+  prompt = TTY::Prompt.new
   rvm_list_lines = rvm_command('rvm list').split("\n")
   rvm_list_lines.shift if rvm_list_lines.first.start_with?('Using ')
   rubies = rvm_list_lines[0...-4] # TODO print excluded lines as an appendix
   rubies_help = rvm_list_lines[-4..-1].join("\n") + "\n"
-  ruby = prompt.select("Choose a Ruby: ", rubies, cycle: true, per_page: 40, filter: true, help: "\n#{rubies_help}", show_help: :always)
+  ruby = prompt.select("Choose Ruby: ", rubies, cycle: true, per_page: 40, filter: true, help: "\n#{rubies_help}", show_help: :always)
   
   ruby = ruby.split.detect {|text| text.include?('ruby')}
   rvm_gemset_list = nil
@@ -62,7 +62,7 @@ begin
   rvm_gemset_list_lines.shift if rvm_gemset_list_lines.first.start_with?('Using ')
   gemsets = rvm_gemset_list_lines[2..-1]
   gemsets_help = rvm_gemset_list_lines[0..1].join("\n") + "\n"
-  gemset = prompt.select("Choose a Gemset: ", gemsets, cycle: true, per_page: 40, filter: true, help: gemsets_help, show_help: :always)
+  gemset = prompt.select("Choose Gemset: ", gemsets, cycle: true, per_page: 40, filter: true, help: gemsets_help, show_help: :always)
   
   gemset = gemset.sub('=>', '').sub('(default)', 'default').strip
   

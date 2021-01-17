@@ -1,5 +1,11 @@
 # Change Log
 
+## 0.0.5
+
+- Support Zsh (Z Shell)
+- Add alises rvmui, rvmtui, and rvm-ui
+- Fix error: "bad option -a"
+
 ## 0.0.4
 
 - Fixed an issue when running without RVM default ruby setup
