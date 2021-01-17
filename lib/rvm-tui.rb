@@ -20,7 +20,7 @@ require 'tty-prompt'
 
 CURRENT_RVM_RUBY = ARGV[0]
 CURRENT_RVM_GEMSET = ARGV[1] || 'default'
-current_rvm = CURRENT_RVM_RUBY
+current_rvm = CURRENT_RVM_RUBY.to_s
 current_rvm += "@#{CURRENT_RVM_GEMSET}" unless CURRENT_RVM_GEMSET.nil?
 CURRENT_RVM = current_rvm
 puts "Current: #{CURRENT_RVM}"
