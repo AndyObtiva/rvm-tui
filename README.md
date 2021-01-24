@@ -28,7 +28,7 @@ Other TUI gems you may be interested in:
 
 The gem can be installed unto any [Ruby](https://rvm.io/rubies/installing)/[Gemset](https://rvm.io/gemsets/basics) in [RVM](https://rvm.io) and it will be used from there everywhere.
 
-Since it is independent of any particular [Ruby](https://www.ruby-lang.org/en/) project, it is recommended you install unto the default [gemset](https://rvm.io/gemsets/basics) (or optionally into its own gemset if you prefer).
+Since it is independent of any particular [Ruby](https://www.ruby-lang.org/en/) project, it is recommended you install unto the default [gemset](https://rvm.io/gemsets/basics) (or optionally into its own gemset if you prefer). Global gemset wouldn't be enough to share it since it does not cross Rubies yet is limited to a specific Ruby version. 
 
 Afterwards, run the `rvm-tui-setup` command from the same [RVM](https://rvm.io) [Ruby](https://rvm.io/rubies/installing)/[Gemset](https://rvm.io/gemsets/basics) you installed the gem at to setup the `rvm-tui` function source in `~/.bash_profile` or `~/.bashrc` (whichever is available)
 
