@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-# Copyright (c) 2020-2021 Andy Maleh
+# Copyright (c) 2020-2022 Andy Maleh
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -40,11 +40,11 @@ rvm_tui_script = <<~SHELL_SCRIPT
     current_rvm="$(rvm current)"
     current_ruby="$(echo $current_rvm | sed -E 's/@.*$//')"
     current_gemset="default"
-    if [[ $current_rvm == *"@"* ]] then
+    if [[ $current_rvm == *"@"* ]] ; then
       current_gemset="$(echo $current_rvm | sed -E 's/^[^@]+@//')"
     fi
     #{command} $current_ruby $current_gemset
-    if [ -f "$HOME/.rvm_command" ]; then
+    if [ -f "$HOME/.rvm_command" ] ; then
       source $HOME/.rvm_command
       rm $HOME/.rvm_command
     fi

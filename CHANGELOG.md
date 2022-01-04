@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.0.6
+
+- Fix missing `;` before `then` in rvm-tui-setup
+
 ## 0.0.5
 
 - Support Zsh (Z Shell)
