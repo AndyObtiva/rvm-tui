@@ -17,6 +17,7 @@ Given how practical and often-used [RVM](https://rvm.io) is, I am providing a te
 
 Other TUI gems you may be interested in:
 - [rake-tui](https://github.com/AndyObtiva/rake-tui)
+- [git-tui](https://github.com/AndyObtiva/git-tui)
 
 ## Pre-requisites
 
